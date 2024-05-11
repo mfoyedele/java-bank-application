@@ -1,7 +1,15 @@
 package com.mfoyedele.javabankapplication.entity;
 
-import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
 public class User {
     private Long id;
     private String firstName;
@@ -16,5 +24,8 @@ public class User {
     private String phoneNumber;
     private String alternatePhoneNumber;
     private String status;
-
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime modifiedAt;
 }
