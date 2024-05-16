@@ -3,11 +3,18 @@ package com.mfoyedele.javabankapplication.service.impl;
 import com.mfoyedele.javabankapplication.dto.BankResponse;
 import com.mfoyedele.javabankapplication.dto.UserRequest;
 import com.mfoyedele.javabankapplication.entity.User;
+import com.mfoyedele.javabankapplication.repository.UserRepository;
 import com.mfoyedele.javabankapplication.utils.AccountUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public BankResponse createAccount(UserRequest userRequest) {
