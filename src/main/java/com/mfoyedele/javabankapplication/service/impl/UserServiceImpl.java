@@ -23,11 +23,13 @@ public class UserServiceImpl implements UserService {
          * Check if user already has an account
          */
         if (userRepository.existsByEmail(userRequest.getEmail())) {
-            BankResponse response = BankResponse.builder()
+            return BankResponse.builder()
                     .responseCode(AccountUtils.ACCOUNT_EXISTS_CODE)
                     .responseMessage(AccountUtils.ACCOUNT_EXISTS_MESSAGE)
+                    .accountInfo(null)
                     .build();
         }
+
         User newUser = User.builder()
                 .firstName(userRequest.getFirstName())
                 .lastName(userRequest.getLastName())
@@ -41,6 +43,11 @@ public class UserServiceImpl implements UserService {
                 .phoneNumber(userRequest.getPhoneNumber())
                 .alternatePhoneNumber(userRequest.getAlternatePhoneNumber())
                 .status("ACTIVE")
+                .build();
+
+        User savedUser = userRepository.save(newUser);
+        return BankResponse.builder()
+                .responseCode()
                 .build();
     }
 }
