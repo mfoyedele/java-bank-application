@@ -4,6 +4,9 @@ import java.time.Year;
 
 public class AccountUtils {
 
+    public static final String ACCOUNT_EXISTS_CODE = "001";
+    public static final String ACCOUNT_EXISTS_MESSAGE = "Account already exists";
+
     public static String generateAccountNumber() {
         /**
          * 2004 + randomSixDigits
