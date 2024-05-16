@@ -1,4 +1,7 @@
 package com.mfoyedele.javabankapplication.repository;
 
-public interface UserRepository {
+import com.mfoyedele.javabankapplication.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
 }
