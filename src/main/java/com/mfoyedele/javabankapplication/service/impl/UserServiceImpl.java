@@ -3,6 +3,9 @@ package com.mfoyedele.javabankapplication.service.impl;
 import com.mfoyedele.javabankapplication.dto.BankResponse;
 import com.mfoyedele.javabankapplication.dto.UserRequest;
 import com.mfoyedele.javabankapplication.entity.User;
+import com.mfoyedele.javabankapplication.utils.AccountUtils;
+
+import java.math.BigDecimal;
 
 public class UserServiceImpl implements UserService {
 
@@ -18,7 +21,12 @@ public class UserServiceImpl implements UserService {
                 .gender(userRequest.getGender())
                 .address(userRequest.getAddress())
                 .stateOfOrigin(userRequest.getStateOfOrigin())
-                .accountNumber()
+                .accountNumber(AccountUtils.generateAccountNumber())
+                .accountBalance(BigDecimal.ZERO)
+                .email(userRequest.getEmail())
+                .phoneNumber(userRequest.getPhoneNumber())
+                .alternatePhoneNumber(userRequest.getAlternatePhoneNumber())
+                .status("ACTIVE")
                 .build();
     }
 }
