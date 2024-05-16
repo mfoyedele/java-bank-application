@@ -1,5 +1,6 @@
 package com.mfoyedele.javabankapplication.service.impl;
 
+import com.mfoyedele.javabankapplication.dto.AccountInfo;
 import com.mfoyedele.javabankapplication.dto.BankResponse;
 import com.mfoyedele.javabankapplication.dto.UserRequest;
 import com.mfoyedele.javabankapplication.entity.User;
@@ -47,7 +48,13 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(newUser);
         return BankResponse.builder()
-                .responseCode()
+                .responseCode(AccountUtils.ACCOUNT_CREATION_SUCCESS)
+                .responseMessage(AccountUtils.ACCOUNT_CREATION_MESSAGE)
+                .accountInfo(AccountInfo.builder()
+                        .accountBalance(savedUser.getAccountBalance())
+                        .accountNumber(savedUser.getAccountNumber())
+                        .accountName(savedUser.getFirstName() + " " + savedUser.getOtherName() + " " + savedUser.getLastName())
+                        .build())
                 .build();
     }
 }
