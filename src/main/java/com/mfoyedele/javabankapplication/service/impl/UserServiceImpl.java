@@ -12,7 +12,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public BankResponse createAccount(UserRequest userRequest) {
         /**
-         * Creating an account -
+         * Creating an account - saving a new user into the db
+         * Check if user already has an account
          */
         User newUser = User.builder()
                 .firstName(userRequest.getFirstName())
