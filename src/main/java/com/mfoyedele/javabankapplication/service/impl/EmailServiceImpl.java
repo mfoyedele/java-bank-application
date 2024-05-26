@@ -3,6 +3,7 @@ package com.mfoyedele.javabankapplication.service.impl;
 import com.mfoyedele.javabankapplication.dto.EmailDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,13 @@ public class EmailServiceImpl extends EmailService {
 
     @Override
     void sendEmailAlert(EmailDetails emailDetails) {
+        try {
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setFrom(senderEmail);
+            mailMessage.setTo(emailDetails.getRecipient());
+            mailMessage.setText(emailDetails.getMessageBody());
+            mailMessage.setSubject(emailDetails.getSubject());
+        }
 
     }
 }
