@@ -2,6 +2,7 @@ package com.mfoyedele.javabankapplication.service.impl;
 
 import com.mfoyedele.javabankapplication.dto.AccountInfo;
 import com.mfoyedele.javabankapplication.dto.BankResponse;
+import com.mfoyedele.javabankapplication.dto.EmailDetails;
 import com.mfoyedele.javabankapplication.dto.UserRequest;
 import com.mfoyedele.javabankapplication.entity.User;
 import com.mfoyedele.javabankapplication.repository.UserRepository;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EmailService emailService;
 
     @Override
     public BankResponse createAccount(UserRequest userRequest) {
@@ -47,6 +51,11 @@ public class UserServiceImpl implements UserService {
                 .build();
 
         User savedUser = userRepository.save(newUser);
+        //Send email Alert
+        EmailDetails emailDetails = EmailDetails.builder()
+                .recipient(savedUser.getEmail())
+                .build();
+        emailService.sendEmailAlert();
         return BankResponse.builder()
                 .responseCode(AccountUtils.ACCOUNT_CREATION_SUCCESS)
                 .responseMessage(AccountUtils.ACCOUNT_CREATION_MESSAGE)
