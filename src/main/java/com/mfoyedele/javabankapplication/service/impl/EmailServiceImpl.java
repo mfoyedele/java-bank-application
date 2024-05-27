@@ -18,7 +18,7 @@ public class EmailServiceImpl extends EmailService {
     private String senderEmail;
 
     @Override
-    void sendEmailAlert(EmailDetails emailDetails) {
+    public void sendEmailAlert(EmailDetails emailDetails) {
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setFrom(senderEmail);
